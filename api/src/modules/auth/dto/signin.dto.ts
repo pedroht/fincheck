@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, IsEmail, MinLength } from 'class-validator';
 
-export class AuthenticateDTO {
+export class SigninDTO {
   @IsString()
   @IsNotEmpty({
     message: 'Campo email é obrigatório',
