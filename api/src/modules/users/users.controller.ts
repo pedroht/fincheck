@@ -12,4 +12,6 @@ export class UsersController {
   me(@ActiveUserId() userId: string) {
     return this.usersService.getUserById(userId);
   }
+
+  // updatePassword
 }
