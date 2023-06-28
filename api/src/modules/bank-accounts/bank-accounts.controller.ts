@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Post,
@@ -43,8 +45,12 @@ export class BankAccountsController {
     );
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bankAccountsService.remove(+id);
+  @Delete(':bankAccountId')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(
+    @ActiveUserId() userId: string,
+    @Param('bankAccountId', ParseUUIDPipe) bankAccountId: string,
+  ) {
+    return this.bankAccountsService.remove(userId, bankAccountId);
   }
 }
