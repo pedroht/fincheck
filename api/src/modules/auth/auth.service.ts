@@ -7,8 +7,8 @@ import {
 import { JwtService } from '@nestjs/jwt';
 
 import { SigninDTO } from './dto/signin.dto';
-import { UsersRepository } from 'src/shared/database/repositories/users.repositories';
 import { SignupDTO } from './dto/signup.dto';
+import { UsersRepository } from 'src/shared/database/repositories/users.repositories';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,11 @@ export class AuthService {
   async signin(signinDto: SigninDTO) {
     const { email, password } = signinDto;
 
-    const user = await this.usersRepo.findByEmail(email);
+    const user = await this.usersRepo.findUnique({
+      where: {
+        email,
+      },
+    });
 
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
@@ -39,7 +43,11 @@ export class AuthService {
 
   async signup(signupDto: SignupDTO) {
     const { email, password } = signupDto;
-    const emailTaken = await this.usersRepo.findByEmail(email);
+    const emailTaken = await this.usersRepo.findUnique({
+      where: {
+        email,
+      },
+    });
 
     if (emailTaken) {
       // status code 409
