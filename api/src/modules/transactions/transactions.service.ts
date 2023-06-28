@@ -7,12 +7,14 @@ import { TransactionsRepository } from 'src/shared/database/repositories/transac
 export class TransactionsService {
   constructor(private readonly transactionsRepo: TransactionsRepository) {}
 
-  create(createTransactionDto: CreateTransactionDto) {
-    return 'This action adds a new transaction';
+  findAllByUserId(userId: string) {
+    return this.transactionsRepo.findMany({
+      where: { userId },
+    });
   }
 
-  findAll() {
-    return `This action returns all transactions`;
+  create(createTransactionDto: CreateTransactionDto) {
+    return 'This action adds a new transaction';
   }
 
   update(id: number, updateTransactionDto: UpdateTransactionDto) {
