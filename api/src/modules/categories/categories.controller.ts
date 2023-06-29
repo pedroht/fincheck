@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { CategoriesService } from './services/categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -21,26 +22,36 @@ export class CategoriesController {
     return this.categoriesService.findAllByUserId(userId);
   }
 
+  @Get(':categoryId')
+  findOne(
+    @ActiveUserId() userId: string,
+    @Param('categoryId', ParseUUIDPipe) categoryId: string,
+  ) {
+    return this.categoriesService.findOne(userId, categoryId);
+  }
+
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+  create(
+    @ActiveUserId() userId: string,
+    @Body() createCategoryDto: CreateCategoryDto,
+  ) {
+    return this.categoriesService.create(userId, createCategoryDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoriesService.findOne(+id);
-  }
-
-  @Patch(':id')
+  @Patch(':categoryId')
   update(
-    @Param('id') id: string,
+    @ActiveUserId() userId: string,
+    @Param('categoryId', ParseUUIDPipe) categoryId: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    return this.categoriesService.update(+id, updateCategoryDto);
+    return this.categoriesService.update(userId, categoryId, updateCategoryDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.categoriesService.remove(+id);
+  @Delete(':categoryId')
+  remove(
+    @ActiveUserId() userId: string,
+    @Param('categoryId', ParseUUIDPipe) categoryId: string,
+  ) {
+    return this.categoriesService.remove(userId, categoryId);
   }
 }
