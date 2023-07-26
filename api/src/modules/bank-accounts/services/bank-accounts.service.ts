@@ -14,29 +14,16 @@ export class BankAccountsService {
   create(userId: string, createBankAccountDto: CreateBankAccountDto) {
     const { color, initialBalance, name, type } = createBankAccountDto;
 
-    return this.bankAccountsRepo.create({
-      data: {
-        userId,
-        color,
-        initialBalance,
-        name,
-        type,
-      },
+    return this.bankAccountsRepo.create(userId, {
+      color,
+      initialBalance,
+      name,
+      type,
     });
   }
 
   async findAllByUserId(userId: string) {
-    const bankAccounts = await this.bankAccountsRepo.findMany({
-      where: { userId },
-      include: {
-        transactions: {
-          select: {
-            value: true,
-            type: true,
-          },
-        },
-      },
-    });
+    const bankAccounts = await this.bankAccountsRepo.findMany(userId);
 
     return bankAccounts.map(({ transactions, ...bankAccount }) => {
       const totalTransactions = transactions.reduce(
@@ -69,14 +56,11 @@ export class BankAccountsService {
 
     const { color, initialBalance, name, type } = updateBankAccountDto;
 
-    return this.bankAccountsRepo.update({
-      where: { id: bankAccountId },
-      data: {
-        color,
-        initialBalance,
-        name,
-        type,
-      },
+    return this.bankAccountsRepo.update(bankAccountId, {
+      color,
+      initialBalance,
+      name,
+      type,
     });
   }
 
@@ -86,9 +70,7 @@ export class BankAccountsService {
       bankAccountId,
     );
 
-    await this.bankAccountsRepo.delete({
-      where: { id: bankAccountId },
-    });
+    await this.bankAccountsRepo.delete(bankAccountId);
 
     return null;
   }

@@ -12,9 +12,7 @@ export class CategoriesService {
   ) {}
 
   findAllByUserId(userId: string) {
-    return this.categoryRepo.findMany({
-      where: { userId },
-    });
+    return this.categoryRepo.findManyByUserId(userId);
   }
 
   async findOne(userId: string, categoryId: string) {
@@ -28,14 +26,7 @@ export class CategoriesService {
   async create(userId: string, createCategoryDto: CreateCategoryDto) {
     const { icon, name, type } = createCategoryDto;
 
-    return this.categoryRepo.create({
-      data: {
-        userId,
-        icon,
-        name,
-        type,
-      },
-    });
+    return this.categoryRepo.create(userId, { icon, name, type });
   }
 
   async update(
@@ -47,21 +38,12 @@ export class CategoriesService {
 
     await this.validateCategoryOwnershipService.execute(userId, categoryId);
 
-    return this.categoryRepo.update({
-      where: { id: categoryId },
-      data: {
-        icon,
-        name,
-        type,
-      },
-    });
+    return this.categoryRepo.update(categoryId, { icon, name, type });
   }
 
   async remove(userId: string, categoryId: string) {
     await this.validateCategoryOwnershipService.execute(userId, categoryId);
 
-    await this.categoryRepo.delete({
-      where: { id: categoryId },
-    });
+    await this.categoryRepo.delete(categoryId);
   }
 }
