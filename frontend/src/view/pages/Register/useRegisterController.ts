@@ -2,14 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useMutation } from '@tanstack/react-query';
+import { toast } from "react-hot-toast";
 
 import { authService } from "../../../app/services/authService";
 import { SignupParams } from "../../../app/services/authService/signup";
-import { toast } from "react-hot-toast";
 
 const schema = z.object({
   name: z.string().nonempty("Nome é obrigatório"),
-  email: z.string().nonempty("E-mail é obrigatório").email("Informe um e-mail válido"),
+  email: z.string().nonempty("E-mail é obrigatório").email("Informe um e-mail válido").transform(value => value.toLowerCase()),
   password: z.string().nonempty("Senha é obrigatória").min(8, {
     message: "Senha deve conter pelo menos 8 digitos"
   })
