@@ -21,10 +21,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return !!storedAccessToken
   })
 
-  const { isError, isFetching, isSuccess } = useQuery({
+  const { isError, isFetching, isSuccess, remove } = useQuery({
     queryKey: ['users', 'me'],
     queryFn: () => usersService.me(),
-    enabled: signedIn
+    enabled: signedIn,
+    staleTime: Infinity
   });
 
   const signin = useCallback((accessToken: string) => {
@@ -35,8 +36,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signout = useCallback(() => {
     localStorage.removeItem(localStorageKeys.ACCESS_TOKEN);
+    remove()
+
     setSignedIn(false)
-  }, [])
+  }, [remove])
 
   useEffect(() => {
     if (isError) {
