@@ -14,7 +14,8 @@ export function Button({ error, className, isLoading, disabled, ...props }: Butt
       disabled={disabled || isLoading}
       className={cn(
         "bg-teal-900 hover:bg-teal-800 disabled:bg-gray-100 px-6 h-12 rounded-2xl font-medium text-white disabled:text-gray-400 disabled:cursor-not-allowed transition-all flex items-center justify-center",
-        error && 'bg-red-900'
+        error && 'bg-red-900',
+        className
       )}
     >
       {isLoading && <Spinner className="w-6 h-6" />}
