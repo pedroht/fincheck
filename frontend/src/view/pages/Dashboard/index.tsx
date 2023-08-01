@@ -1,6 +1,8 @@
 import { useAuth } from "../../../app/hooks/useAuth";
 import { Logo } from "../../components/Logo";
 import { UserMenu } from "../../components/UserMenu";
+import { Accounts } from "./components/Accounts";
+import { Transactions } from "./components/Transactions";
 
 export function Dashboard() {
   const { signout } = useAuth();
@@ -14,8 +16,13 @@ export function Dashboard() {
       </header>
 
       <main className="flex-1 flex gap-4">
-        <div className="w-1/2">1</div>
-        <div className="w-1/2">1</div>
+        <div className="w-1/2">
+          <Accounts />
+        </div>
+
+        <div className="w-1/2">
+          <Transactions />
+        </div>
       </main >
     </div >
   )
