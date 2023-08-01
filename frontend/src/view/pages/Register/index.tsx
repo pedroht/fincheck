@@ -1,23 +1,26 @@
 import { Link } from "react-router-dom";
 
-import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
 import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
-  const { errors, handleSubmit, register, isLoading } = useRegisterController()
+  const { errors, handleSubmit, register, isLoading } = useRegisterController();
   return (
     <>
       <header className="flex flex-col items-center gap-4">
-        <h1 className="text-2xl font-bold text-gray-900 tracking-[-1px]">
+        <h1 className="text-2xl font-bold tracking-[-1px] text-gray-900">
           Crie sua conta
         </h1>
 
         <p className="space-x-2">
-          <span className="text-gray-700 tracking-[-0.5px]">
+          <span className="tracking-[-0.5px] text-gray-700">
             Já possui uma conta?
           </span>
-          <Link to="/login" className="tracking-[-0.5px] text-teal-900 font-medium">
+          <Link
+            to="/login"
+            className="font-medium tracking-[-0.5px] text-teal-900"
+          >
             Fazer Login
           </Link>
         </p>
@@ -47,5 +50,5 @@ export function Register() {
         </Button>
       </form>
     </>
-  )
+  );
 }

@@ -6,25 +6,28 @@ interface SliderNavigationProps {
   isEnd: boolean;
 }
 
-export function SliderNavigation({ isBeginning, isEnd }: SliderNavigationProps) {
-  const swiper = useSwiper()
+export function SliderNavigation({
+  isBeginning,
+  isEnd,
+}: SliderNavigationProps) {
+  const swiper = useSwiper();
 
   return (
     <div>
       <button
-        className="p-3 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40"
+        className="rounded-full p-3 transition-colors enabled:hover:bg-black/10 disabled:opacity-40"
         onClick={() => swiper.slidePrev()}
         disabled={isBeginning}
       >
-        <ChevronLeftIcon className="text-white w-6 h-6" />
+        <ChevronLeftIcon className="h-6 w-6 text-white" />
       </button>
       <button
-        className="p-3 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40"
+        className="rounded-full p-3 transition-colors enabled:hover:bg-black/10 disabled:opacity-40"
         onClick={() => swiper.slideNext()}
         disabled={isEnd}
       >
-        <ChevronRightIcon className="text-white w-6 h-6" />
+        <ChevronRightIcon className="h-6 w-6 text-white" />
       </button>
     </div>
-  )
+  );
 }

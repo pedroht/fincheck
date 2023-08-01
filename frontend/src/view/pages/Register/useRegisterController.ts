@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
@@ -10,44 +10,48 @@ import { SignupParams } from "../../../app/services/authService/signup";
 
 const schema = z.object({
   name: z.string().nonempty("Nome é obrigatório"),
-  email: z.string().nonempty("E-mail é obrigatório").email("Informe um e-mail válido").transform(value => value.toLowerCase()),
+  email: z
+    .string()
+    .nonempty("E-mail é obrigatório")
+    .email("Informe um e-mail válido")
+    .transform((value) => value.toLowerCase()),
   password: z.string().nonempty("Senha é obrigatória").min(8, {
-    message: "Senha deve conter pelo menos 8 digitos"
-  })
-})
+    message: "Senha deve conter pelo menos 8 digitos",
+  }),
+});
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<typeof schema>;
 
 export function useRegisterController() {
   const {
     handleSubmit: hookFormSubmit,
     register,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema)
-  })
+    resolver: zodResolver(schema),
+  });
 
-  const { isLoading, mutateAsync  } = useMutation({
+  const { isLoading, mutateAsync } = useMutation({
     mutationFn: async (data: SignupParams) => {
-      return authService.signup(data)
+      return authService.signup(data);
     },
-  })
+  });
 
-  const { signin} = useAuth();
+  const { signin } = useAuth();
 
   const handleSubmit = hookFormSubmit(async (data) => {
     try {
-      const { accessToken } = await mutateAsync(data)
-      signin(accessToken)
+      const { accessToken } = await mutateAsync(data);
+      signin(accessToken);
     } catch (error) {
-      toast.error('Ocorreu um erro ao criar sua conta')
+      toast.error("Ocorreu um erro ao criar sua conta");
     }
-  })
+  });
 
   return {
     errors,
     isLoading,
     register,
-    handleSubmit
-  }
+    handleSubmit,
+  };
 }

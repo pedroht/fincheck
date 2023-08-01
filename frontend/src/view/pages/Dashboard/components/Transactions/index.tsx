@@ -11,18 +11,19 @@ import { SliderNavigation } from "./SliderNavigation";
 import { SliderOption } from "./SliderOption";
 import { useTransactionsController } from "./useTransactionsController";
 
-import emptyStateImage from '../../../../../assets/empty-state.svg';
+import emptyStateImage from "../../../../../assets/empty-state.svg";
 
 export function Transactions() {
-  const { areValuesVisible, isInitialLoading, isLoading, transactions } = useTransactionsController()
+  const { areValuesVisible, isInitialLoading, isLoading, transactions } =
+    useTransactionsController();
 
-  const hasTransactions = transactions.length > 0
+  const hasTransactions = transactions.length > 0;
 
   return (
-    <div className="bg-gray-100 rounded-2xl w-full h-full px-4 py-8 md:p-10 flex flex-col">
+    <div className="flex h-full w-full flex-col rounded-2xl bg-gray-100 px-4 py-8 md:p-10">
       {isInitialLoading && (
-        <div className='h-full w-full grid place-items-center'>
-          <Spinner className="w-10 h-10" />
+        <div className="grid h-full w-full place-items-center">
+          <Spinner className="h-10 w-10" />
         </div>
       )}
 
@@ -32,7 +33,7 @@ export function Transactions() {
             <div className="flex items-center justify-between">
               <button className="flex items-center gap-2">
                 <TransactionsIcon />
-                <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
+                <span className="text-sm font-medium tracking-[-0.5px] text-gray-800">
                   Transações
                 </span>
                 <ChevronDownIcon className="text-gray-900" />
@@ -43,11 +44,8 @@ export function Transactions() {
               </button>
             </div>
 
-            <div className="mt-6 relative">
-              <Swiper
-                slidesPerView={3}
-                centeredSlides
-              >
+            <div className="relative mt-6">
+              <Swiper slidesPerView={3} centeredSlides>
                 <SliderNavigation />
 
                 {MONTHS.map((month, index) => (
@@ -65,67 +63,65 @@ export function Transactions() {
             </div>
           </header>
 
-          <div className="mt-4 space-y-2 flex-1 overflow-y-auto">
+          <div className="mt-4 flex-1 space-y-2 overflow-y-auto">
             {isLoading && (
-              <div className="flex flex-col items-center justify-center h-full">
-                <Spinner className="w-10 h-10" />
+              <div className="flex h-full flex-col items-center justify-center">
+                <Spinner className="h-10 w-10" />
               </div>
             )}
 
-            {(!hasTransactions && !isLoading) && (
-              <div className="flex flex-col items-center justify-center h-full">
+            {!hasTransactions && !isLoading && (
+              <div className="flex h-full flex-col items-center justify-center">
                 <img src={emptyStateImage} alt="Empty State" />
 
-                <p className="text-gray-700 text-center">
+                <p className="text-center text-gray-700">
                   Não encontramos nenhuma transação
                 </p>
               </div>
             )}
 
-            {(hasTransactions && !isLoading) && (
+            {hasTransactions && !isLoading && (
               <>
-                <div className="p-4 bg-white rounded-2xl flex items-center justify-between gap-4">
-                  <div className="flex-1 flex items-center gap-3">
+                <div className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4">
+                  <div className="flex flex-1 items-center gap-3">
                     <CategoryIcon type="expense" />
 
                     <div>
-                      <strong className="tracking-[-0.5px] block">
+                      <strong className="block tracking-[-0.5px]">
                         Almoço
                       </strong>
-                      <span className="text-sm text-gray-600">
-                        04/06/2023
-                      </span>
+                      <span className="text-sm text-gray-600">04/06/2023</span>
                     </div>
                   </div>
 
                   <span
                     className={cn(
-                      "text-red-800 tracking-[-0.5px] font-medium",
-                      !areValuesVisible && 'blur-md'
-                    )}>
+                      "font-medium tracking-[-0.5px] text-red-800",
+                      !areValuesVisible && "blur-md",
+                    )}
+                  >
                     -{formatCurrency(1250.32)}
                   </span>
                 </div>
 
-                <div className="p-4 bg-white rounded-2xl flex items-center justify-between gap-4">
-                  <div className="flex-1 flex items-center gap-3">
+                <div className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4">
+                  <div className="flex flex-1 items-center gap-3">
                     <CategoryIcon type="income" />
 
                     <div>
-                      <strong className="tracking-[-0.5px] block">
+                      <strong className="block tracking-[-0.5px]">
                         Almoço
                       </strong>
-                      <span className="text-sm text-gray-600">
-                        04/06/2023
-                      </span>
+                      <span className="text-sm text-gray-600">04/06/2023</span>
                     </div>
                   </div>
 
                   <span
                     className={cn(
-                      "text-green-800 tracking-[-0.5px] font-medium",
-                      !areValuesVisible && 'blur-md'
-                    )}>
+                      "font-medium tracking-[-0.5px] text-green-800",
+                      !areValuesVisible && "blur-md",
+                    )}
+                  >
                     {formatCurrency(1250.32)}
                   </span>
                 </div>
@@ -135,5 +131,5 @@ export function Transactions() {
         </>
       )}
     </div>
-  )
+  );
 }

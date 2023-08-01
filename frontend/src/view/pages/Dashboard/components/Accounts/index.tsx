@@ -1,13 +1,13 @@
-import 'swiper/css';
+import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { PlusIcon } from '@radix-ui/react-icons';
-import { cn } from '../../../../../app/utils/cn';
-import { formatCurrency } from '../../../../../app/utils/formatCurrency';
-import { Spinner } from '../../../../components/Spinner';
+import { PlusIcon } from "@radix-ui/react-icons";
+import { cn } from "../../../../../app/utils/cn";
+import { formatCurrency } from "../../../../../app/utils/formatCurrency";
+import { Spinner } from "../../../../components/Spinner";
 import { EyeIcon } from "../../../../components/icons/EyeIcon";
 import { AccountCard } from "./AccountCard";
-import { SliderNavigation } from './SliderNavigation';
+import { SliderNavigation } from "./SliderNavigation";
 import { useAccountsController } from "./useAccountsController";
 
 export function Accounts() {
@@ -18,33 +18,35 @@ export function Accounts() {
     areValuesVisible,
     toggleValueVisibility,
     isLoading,
-    accounts
+    accounts,
   } = useAccountsController();
 
   return (
-    <div className="bg-teal-900 rounded-2xl w-full h-full px-4 py-8 md:p-10 flex flex-col">
+    <div className="flex h-full w-full flex-col rounded-2xl bg-teal-900 px-4 py-8 md:p-10">
       {isLoading && (
-        <div className='h-full w-full grid place-items-center'>
-          <Spinner className="text-teal-950/50 fill-white w-10 h-10" />
+        <div className="grid h-full w-full place-items-center">
+          <Spinner className="h-10 w-10 fill-white text-teal-950/50" />
         </div>
       )}
 
       {!isLoading && (
         <>
           <div>
-            <span className="text-white tracking-[-0.5px] block">Saldo total</span>
+            <span className="block tracking-[-0.5px] text-white">
+              Saldo total
+            </span>
             <div className="flex items-center gap-2">
               <strong
                 className={cn(
                   "text-2xl tracking-[-1px] text-white",
-                  !areValuesVisible && "blur-md"
+                  !areValuesVisible && "blur-md",
                 )}
               >
                 {formatCurrency(1000)}
               </strong>
 
               <button
-                className="flex items-center justify-center w-8 h-8"
+                className="flex h-8 w-8 items-center justify-center"
                 onClick={toggleValueVisibility}
               >
                 <EyeIcon open={!areValuesVisible} />
@@ -52,23 +54,21 @@ export function Accounts() {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col justify-end mt-10 md:mt-0">
+          <div className="mt-10 flex flex-1 flex-col justify-end md:mt-0">
             {accounts.length === 0 && (
               <>
                 <div className="mb-4">
-                  <strong className="text-white tracking-[-1px] text-lg font-bold">
+                  <strong className="text-lg font-bold tracking-[-1px] text-white">
                     Minhas contas
                   </strong>
                 </div>
 
-                <button
-                  className='h-52 border-2 border-dashed border-teal-600 rounded-2xl flex flex-col items-center justify-center gap-4 text-white hover:bg-teal-950/5 transition-colors'
-                >
-                  <div className='w-11 h-11 rounded-full border-2 border-dashed border-white flex items-center justify-center'>
-                    <PlusIcon className='w-6 h-6' />
+                <button className="flex h-52 flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-teal-600 text-white transition-colors hover:bg-teal-950/5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-dashed border-white">
+                    <PlusIcon className="h-6 w-6" />
                   </div>
 
-                  <span className="font-medium tracking-[-0.5px] w-32 text-center block">
+                  <span className="block w-32 text-center font-medium tracking-[-0.5px]">
                     Cadastre uma nova conta
                   </span>
                 </button>
@@ -80,15 +80,18 @@ export function Accounts() {
                 <Swiper
                   spaceBetween={16}
                   slidesPerView={windowWidth >= 500 ? 2.1 : 1.2}
-                  onSlideChange={swiper => {
+                  onSlideChange={(swiper) => {
                     setSliderState({
                       isBeginning: swiper.isBeginning,
-                      isEnd: swiper.isEnd
-                    })
+                      isEnd: swiper.isEnd,
+                    });
                   }}
                 >
-                  <div slot="container-start" className="flex items-center justify-between mb-4">
-                    <strong className="text-white tracking-[-1px] text-lg font-bold">
+                  <div
+                    slot="container-start"
+                    className="mb-4 flex items-center justify-between"
+                  >
+                    <strong className="text-lg font-bold tracking-[-1px] text-white">
                       Minhas contas
                     </strong>
 
@@ -99,7 +102,6 @@ export function Accounts() {
                   </div>
 
                   <div>
-
                     <SwiperSlide>
                       <AccountCard
                         name="Nubank"
@@ -134,5 +136,5 @@ export function Accounts() {
         </>
       )}
     </div>
-  )
+  );
 }

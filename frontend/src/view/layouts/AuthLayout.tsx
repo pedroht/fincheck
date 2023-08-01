@@ -6,8 +6,8 @@ import illustration from "../../assets/illustration.png";
 
 export function AuthLayout() {
   return (
-    <div className="flex w-full h-full">
-      <div className="w-full lg:w-1/2 h-full flex flex-col items-center justify-center gap-16">
+    <div className="flex h-full w-full">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-16 lg:w-1/2">
         <Logo className="h-6 text-gray-500" />
 
         <div className="w-full max-w-[504px] px-8">
@@ -15,20 +15,21 @@ export function AuthLayout() {
         </div>
       </div>
 
-      <div className="hidden w-1/2 h-full lg:flex justify-center items-center p-8 relative">
+      <div className="relative hidden h-full w-1/2 items-center justify-center p-8 lg:flex">
         <img
           src={illustration}
-          className="object-cover w-full h-full max-w-[656px] max-h-[960px] select-none rounded-[32px]"
+          className="h-full max-h-[960px] w-full max-w-[656px] select-none rounded-[32px] object-cover"
         />
 
-        <div className="max-w-[656px] bottom-8 mx-8 bg-white p-10 absolute rounded-b-[32px] space-y-6">
-          <Logo className="text-teal-900 h-8" />
+        <div className="absolute bottom-8 mx-8 max-w-[656px] space-y-6 rounded-b-[32px] bg-white p-10">
+          <Logo className="h-8 text-teal-900" />
 
-          <p className="text-gray-700 font-medium text-xl">
-            Gerencie suas finanças pessoais de uma forma simples com o fincheck, e o melhor, totalmente de graça!
+          <p className="text-xl font-medium text-gray-700">
+            Gerencie suas finanças pessoais de uma forma simples com o fincheck,
+            e o melhor, totalmente de graça!
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }

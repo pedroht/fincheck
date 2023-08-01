@@ -12,51 +12,55 @@ interface AuthContextValue {
   signout(): void;
 }
 
-export const AuthContext = createContext({} as AuthContextValue)
+export const AuthContext = createContext({} as AuthContextValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [signedIn, setSignedIn] = useState<boolean>(() => {
-    const storedAccessToken = localStorage.getItem(localStorageKeys.ACCESS_TOKEN)
+    const storedAccessToken = localStorage.getItem(
+      localStorageKeys.ACCESS_TOKEN,
+    );
 
-    return !!storedAccessToken
-  })
+    return !!storedAccessToken;
+  });
 
   const { isError, isFetching, isSuccess, remove } = useQuery({
-    queryKey: ['users', 'me'],
+    queryKey: ["users", "me"],
     queryFn: () => usersService.me(),
     enabled: signedIn,
-    staleTime: Infinity
+    staleTime: Infinity,
   });
 
   const signin = useCallback((accessToken: string) => {
-    localStorage.setItem(localStorageKeys.ACCESS_TOKEN, accessToken)
+    localStorage.setItem(localStorageKeys.ACCESS_TOKEN, accessToken);
 
-    setSignedIn(true)
-  }, [])
+    setSignedIn(true);
+  }, []);
 
   const signout = useCallback(() => {
     localStorage.removeItem(localStorageKeys.ACCESS_TOKEN);
-    remove()
+    remove();
 
-    setSignedIn(false)
-  }, [remove])
+    setSignedIn(false);
+  }, [remove]);
 
   useEffect(() => {
     if (isError) {
-      toast.error("Sessão expirada")
-      signout()
+      toast.error("Sessão expirada");
+      signout();
     }
-  }, [isError, signout])
+  }, [isError, signout]);
 
   return (
-    <AuthContext.Provider value={{
-      signedIn: isSuccess && signedIn,
-      signin,
-      signout
-    }}>
+    <AuthContext.Provider
+      value={{
+        signedIn: isSuccess && signedIn,
+        signin,
+        signout,
+      }}
+    >
       <LaunchScreen isLoading={isFetching} />
 
       {!isFetching && children}
     </AuthContext.Provider>
-  )
+  );
 }

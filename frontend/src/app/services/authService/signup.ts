@@ -11,9 +11,10 @@ interface SignupResponse {
 }
 
 export async function signup(params: SignupParams) {
-  const { data } = await httpClient.post<SignupResponse>('/auth/signup', params)
+  const { data } = await httpClient.post<SignupResponse>(
+    "/auth/signup",
+    params,
+  );
 
   return data;
 }
-
-

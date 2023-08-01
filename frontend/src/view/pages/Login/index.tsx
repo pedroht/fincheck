@@ -6,20 +6,23 @@ import { Button } from "../../components/Button";
 import { useLoginController } from "./useLoginController";
 
 export function Login() {
-  const { handleSubmit, register, errors, isLoading } = useLoginController()
+  const { handleSubmit, register, errors, isLoading } = useLoginController();
 
   return (
     <div>
       <header className="flex flex-col items-center gap-4">
-        <h1 className="text-2xl font-bold text-gray-900 tracking-[-1px]">
+        <h1 className="text-2xl font-bold tracking-[-1px] text-gray-900">
           Entre em sua conta
         </h1>
 
         <p className="space-x-2">
-          <span className="text-gray-700 tracking-[-0.5px]">
+          <span className="tracking-[-0.5px] text-gray-700">
             Novo por aqui?
           </span>
-          <Link to="/register" className="tracking-[-0.5px] text-teal-900 font-medium">
+          <Link
+            to="/register"
+            className="font-medium tracking-[-0.5px] text-teal-900"
+          >
             Crie uma conta
           </Link>
         </p>
@@ -45,5 +48,5 @@ export function Login() {
         </Button>
       </form>
     </div>
-  )
+  );
 }

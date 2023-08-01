@@ -17,13 +17,15 @@ export function LaunchScreen({ isLoading }: LaunchScreenProps) {
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >
-      <div className="fixed inset-0 w-full h-full
-    grid place-items-center bg-teal-900">
+      <div
+        className="fixed inset-0 grid h-full
+    w-full place-items-center bg-teal-900"
+      >
         <div className="flex flex-col items-center gap-4">
           <Logo className="h-10 text-white" />
-          <Spinner className="text-teal-900 fill-white" />
+          <Spinner className="fill-white text-teal-900" />
         </div>
       </div>
     </Transition>
-  )
+  );
 }

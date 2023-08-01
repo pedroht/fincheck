@@ -6,4 +6,4 @@ export const iconsMap = {
   CHECKING: CheckingIcon,
   INVESTMENT: InvestmentIcon,
   CASH: CashIcon,
-}
+};

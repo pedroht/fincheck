@@ -8,8 +8,8 @@ export function useAccountsController() {
 
   const [sliderState, setSliderState] = useState({
     isBeginning: true,
-    isEnd: false
-  })
+    isEnd: false,
+  });
   const [isLoading] = useState(false);
 
   return {
@@ -19,6 +19,6 @@ export function useAccountsController() {
     areValuesVisible,
     toggleValueVisibility,
     isLoading,
-    accounts: []
-  }
+    accounts: [],
+  };
 }

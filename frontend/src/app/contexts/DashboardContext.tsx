@@ -11,17 +11,17 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const [areValuesVisible, setAreValuesVisible] = useState(true);
 
   const toggleValueVisibility = useCallback(() => {
-    setAreValuesVisible(prevState => !prevState)
-  }, [])
+    setAreValuesVisible((prevState) => !prevState);
+  }, []);
 
   return (
     <DashboardContext.Provider
       value={{
         areValuesVisible,
-        toggleValueVisibility
+        toggleValueVisibility,
       }}
     >
       {children}
     </DashboardContext.Provider>
-  )
+  );
 }

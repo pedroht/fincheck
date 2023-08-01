@@ -7,7 +7,7 @@ interface AccountCardProps {
   color: string;
   name: string;
   balance: number;
-  type: 'CASH' | 'INVESTMENT' | 'CHECKING';
+  type: "CASH" | "INVESTMENT" | "CHECKING";
 }
 
 export function AccountCard({ color, name, balance, type }: AccountCardProps) {
@@ -15,13 +15,13 @@ export function AccountCard({ color, name, balance, type }: AccountCardProps) {
 
   return (
     <div
-      className="p-4 bg-white rounded-2xl h-[200px] flex flex-col justify-between border-b-4 border-b-teal-950"
+      className="flex h-[200px] flex-col justify-between rounded-2xl border-b-4 border-b-teal-950 bg-white p-4"
       style={{ borderBottomColor: color }}
     >
       <div>
         <BankAccountTypeIcon type={type} />
 
-        <span className="text-gray-800 font-medium tracking-[-0.5px] mt-4 block">
+        <span className="mt-4 block font-medium tracking-[-0.5px] text-gray-800">
           {name}
         </span>
       </div>
@@ -29,16 +29,14 @@ export function AccountCard({ color, name, balance, type }: AccountCardProps) {
       <div>
         <span
           className={cn(
-            "text-gray-800 font-medium tracking-[-0.5px] block",
-            !areValuesVisible && 'blur-sm'
+            "block font-medium tracking-[-0.5px] text-gray-800",
+            !areValuesVisible && "blur-sm",
           )}
         >
           {formatCurrency(balance)}
         </span>
-        <small className="text-gray-600 text-sm">
-          Saldo atual
-        </small>
+        <small className="text-sm text-gray-600">Saldo atual</small>
       </div>
     </div>
-  )
+  );
 }

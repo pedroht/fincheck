@@ -1,7 +1,9 @@
 export function UserMenu() {
   return (
-    <div className="bg-teal-0 w-12 aspect-square rounded-full flex justify-center items-center border border-teal-100">
-      <span className="text-sm tracking-[-0.5px] text-teal-900 font-medium">PH</span>
+    <div className="flex aspect-square w-12 items-center justify-center rounded-full border border-teal-100 bg-teal-0">
+      <span className="text-sm font-medium tracking-[-0.5px] text-teal-900">
+        PH
+      </span>
     </div>
-  )
+  );
 }

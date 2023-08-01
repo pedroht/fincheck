@@ -1,6 +1,6 @@
-import { ComponentProps } from "react"
+import { ComponentProps } from "react";
 
-interface LogoProps extends ComponentProps<"svg"> { }
+interface LogoProps extends ComponentProps<"svg"> {}
 
 export function Logo(props: LogoProps) {
   return (
@@ -38,6 +38,5 @@ export function Logo(props: LogoProps) {
         fill="currentColor"
       />
     </svg>
-
-  )
+  );
 }

@@ -6,7 +6,7 @@ interface MeResponse {
 }
 
 export async function me() {
-  const { data } = await httpClient.get<MeResponse>('/users/me')
+  const { data } = await httpClient.get<MeResponse>("/users/me");
 
   return data;
 }
