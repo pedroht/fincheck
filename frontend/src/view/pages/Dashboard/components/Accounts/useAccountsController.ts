@@ -10,12 +10,14 @@ export function useAccountsController() {
     isBeginning: true,
     isEnd: false
   })
+  const [isLoading] = useState(false);
 
   return {
     sliderState,
     setSliderState,
     windowWidth,
     areValuesVisible,
-    toggleValueVisibility
+    toggleValueVisibility,
+    isLoading
   }
 }
