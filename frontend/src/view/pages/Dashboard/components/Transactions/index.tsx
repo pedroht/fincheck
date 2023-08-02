@@ -5,16 +5,24 @@ import { formatCurrency } from "../../../../../app/utils/formatCurrency";
 import { Spinner } from "../../../../components/Spinner";
 import { FilterIcon } from "../../../../components/icons/FilterIcon";
 import { CategoryIcon } from "../../../../components/icons/categories/CategoryIcon";
+import { FiltersModal } from "./FiltersModal.tsx";
 import { SliderNavigation } from "./SliderNavigation";
 import { SliderOption } from "./SliderOption";
+import { TransactionTypeDropdown } from "./TransactionTypeDropdown";
 import { useTransactionsController } from "./useTransactionsController";
 
 import emptyStateImage from "../../../../../assets/empty-state.svg";
-import { TransactionTypeDropdown } from "./TransactionTypeDropdown";
 
 export function Transactions() {
-  const { areValuesVisible, isInitialLoading, isLoading, transactions } =
-    useTransactionsController();
+  const {
+    areValuesVisible,
+    isInitialLoading,
+    isLoading,
+    transactions,
+    isFiltersModalOpen,
+    handleCloseFiltersModal,
+    handleOpenFiltersModal,
+  } = useTransactionsController();
 
   const hasTransactions = transactions.length > 0;
 
@@ -28,11 +36,16 @@ export function Transactions() {
 
       {!isInitialLoading && (
         <>
+          <FiltersModal
+            open={isFiltersModalOpen}
+            onClose={handleCloseFiltersModal}
+          />
+
           <header>
             <div className="flex items-center justify-between">
               <TransactionTypeDropdown />
 
-              <button>
+              <button onClick={handleOpenFiltersModal}>
                 <FilterIcon />
               </button>
             </div>

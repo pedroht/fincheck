@@ -1,6 +1,5 @@
 import { DashboardProvider } from "../../../app/contexts/DashboardContext";
 import { Logo } from "../../components/Logo";
-import { Modal } from "../../components/Modal";
 import { UserMenu } from "../../components/UserMenu";
 import { Accounts } from "./components/Accounts";
 import { Fab } from "./components/Fab";
@@ -27,9 +26,6 @@ export function Dashboard() {
         </main>
 
         <Fab />
-        <Modal title="Filtro" open>
-          Content
-        </Modal>
       </div>
     </DashboardProvider>
   );

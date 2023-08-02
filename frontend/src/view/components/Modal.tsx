@@ -5,14 +5,21 @@ import { cn } from "../../app/utils/cn";
 
 interface ModalProps {
   open: boolean;
+  onClose?(): void;
   children: React.ReactNode;
   title: string;
   rightAction?: React.ReactNode;
 }
 
-export function Modal({ open, children, title, rightAction }: ModalProps) {
+export function Modal({
+  open,
+  onClose,
+  children,
+  title,
+  rightAction,
+}: ModalProps) {
   return (
-    <Dialog.Root open={open}>
+    <Dialog.Root onOpenChange={onClose} open={open}>
       <Dialog.Portal>
         <Dialog.Overlay
           className={cn(
@@ -28,7 +35,10 @@ export function Modal({ open, children, title, rightAction }: ModalProps) {
           )}
         >
           <header className="flex h-12 items-center justify-between text-gray-800">
-            <button className="flex h-12 w-12 items-center justify-center outline-none">
+            <button
+              onClick={onClose}
+              className="flex h-12 w-12 items-center justify-center outline-none"
+            >
               <Cross2Icon className="h-6 w-6" />
             </button>
 
