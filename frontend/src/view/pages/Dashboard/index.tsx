@@ -4,6 +4,7 @@ import { UserMenu } from "../../components/UserMenu";
 import { Accounts } from "./components/Accounts";
 import { Fab } from "./components/Fab";
 import { Transactions } from "./components/Transactions";
+import { NewAccountModal } from "./modals/NewAccountModal";
 
 export function Dashboard() {
   return (
@@ -26,6 +27,7 @@ export function Dashboard() {
         </main>
 
         <Fab />
+        <NewAccountModal />
       </div>
     </DashboardProvider>
   );

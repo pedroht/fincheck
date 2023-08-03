@@ -13,12 +13,13 @@ import { useAccountsController } from "./useAccountsController";
 export function Accounts() {
   const {
     sliderState,
-    setSliderState,
     windowWidth,
     areValuesVisible,
-    toggleValueVisibility,
     isLoading,
     accounts,
+    setSliderState,
+    toggleValueVisibility,
+    openNewAccountModal,
   } = useAccountsController();
 
   return (
@@ -63,7 +64,10 @@ export function Accounts() {
                   </strong>
                 </div>
 
-                <button className="flex h-52 flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-teal-600 text-white transition-colors hover:bg-teal-950/5">
+                <button
+                  className="flex h-52 flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-teal-600 text-white transition-colors hover:bg-teal-950/5"
+                  onClick={openNewAccountModal}
+                >
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-dashed border-white">
                     <PlusIcon className="h-6 w-6" />
                   </div>
