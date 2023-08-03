@@ -1,11 +1,8 @@
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  CrossCircledIcon,
-} from "@radix-ui/react-icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import * as RdxSelect from "@radix-ui/react-select";
 import { useState } from "react";
 import { cn } from "../../app/utils/cn";
+import { FieldError } from "./FieldError";
 
 interface SelectProps {
   className?: string;
@@ -82,12 +79,7 @@ export function Select({
         </RdxSelect.Root>
       </div>
 
-      {error && (
-        <div className="mt-2 flex items-center gap-2 text-red-900">
-          <CrossCircledIcon />
-          <span className="text-xs">{error}</span>
-        </div>
-      )}
+      <FieldError error={error} />
     </div>
   );
 }
