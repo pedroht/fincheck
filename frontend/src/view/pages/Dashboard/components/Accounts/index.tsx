@@ -33,13 +33,13 @@ export function Accounts() {
       {!isLoading && (
         <>
           <div>
-            <span className="block tracking-[-0.5px] text-white">
+            <span className="block tracking-tighter text-white">
               Saldo total
             </span>
             <div className="flex items-center gap-2">
               <strong
                 className={cn(
-                  "text-2xl tracking-[-1px] text-white",
+                  "text-2xl tracking-tightest text-white",
                   !areValuesVisible && "blur-md",
                 )}
               >
@@ -59,7 +59,7 @@ export function Accounts() {
             {accounts.length === 0 && (
               <>
                 <div className="mb-4">
-                  <strong className="text-lg font-bold tracking-[-1px] text-white">
+                  <strong className="text-lg font-bold tracking-tightest text-white">
                     Minhas contas
                   </strong>
                 </div>
@@ -72,7 +72,7 @@ export function Accounts() {
                     <PlusIcon className="h-6 w-6" />
                   </div>
 
-                  <span className="block w-32 text-center font-medium tracking-[-0.5px]">
+                  <span className="block w-32 text-center font-medium tracking-tighter">
                     Cadastre uma nova conta
                   </span>
                 </button>
@@ -95,7 +95,7 @@ export function Accounts() {
                     slot="container-start"
                     className="mb-4 flex items-center justify-between"
                   >
-                    <strong className="text-lg font-bold tracking-[-1px] text-white">
+                    <strong className="text-lg font-bold tracking-tightest text-white">
                       Minhas contas
                     </strong>
 

@@ -3,6 +3,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      letterSpacing: {
+        tighter: '-0.5px',
+        tightest: '-1px',
+      },
       colors: {
         gray: {
           0: '#F8F9FA',

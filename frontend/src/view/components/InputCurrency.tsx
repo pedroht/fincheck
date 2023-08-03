@@ -5,7 +5,7 @@ export function InputCurrency() {
     <NumericFormat
       thousandSeparator="."
       decimalSeparator=","
-      className="w-full text-[32px] font-bold tracking-[-1px] text-gray-800 outline-none"
+      className="w-full text-[32px] font-bold tracking-tightest text-gray-800 outline-none"
       defaultValue="0"
     />
   );

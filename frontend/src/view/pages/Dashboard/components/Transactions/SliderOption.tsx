@@ -12,7 +12,7 @@ export function SliderOption({ isActive, month, index }: SliderOptionProps) {
   return (
     <button
       data-active={isActive}
-      className="h-12 w-full rounded-full text-sm font-medium tracking-[-0.5px] text-gray-800 data-[active='true']:bg-white"
+      className="h-12 w-full rounded-full text-sm font-medium tracking-tighter text-gray-800 data-[active='true']:bg-white"
       onClick={() => swiper.slideTo(index)}
     >
       {month}

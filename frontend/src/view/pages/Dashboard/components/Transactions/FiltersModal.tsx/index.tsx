@@ -26,7 +26,7 @@ export function FiltersModal({ open, onClose }: FiltersModalProps) {
   return (
     <Modal open={open} onClose={onClose} title="Filtros">
       <div>
-        <span className="text-lg font-bold tracking-[-1px] text-gray-800">
+        <span className="text-lg font-bold tracking-tightest text-gray-800">
           Conta
         </span>
 
@@ -47,7 +47,7 @@ export function FiltersModal({ open, onClose }: FiltersModalProps) {
       </div>
 
       <div className="mt-10 text-gray-800">
-        <span className="text-lg font-bold tracking-[-1px]">Ano</span>
+        <span className="text-lg font-bold tracking-tightest">Ano</span>
 
         <div className="mt-2 flex w-52 items-center justify-between">
           <button
@@ -58,7 +58,7 @@ export function FiltersModal({ open, onClose }: FiltersModalProps) {
           </button>
 
           <div className="flex-1 text-center">
-            <span className="text-sm font-medium tracking-[-0.5px]">
+            <span className="text-sm font-medium tracking-tighter">
               {selectedYear}
             </span>
           </div>

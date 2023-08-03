@@ -93,16 +93,14 @@ export function Transactions() {
                     <CategoryIcon type="expense" />
 
                     <div>
-                      <strong className="block tracking-[-0.5px]">
-                        Almoço
-                      </strong>
+                      <strong className="block tracking-tighter">Almoço</strong>
                       <span className="text-sm text-gray-600">04/06/2023</span>
                     </div>
                   </div>
 
                   <span
                     className={cn(
-                      "font-medium tracking-[-0.5px] text-red-800",
+                      "font-medium tracking-tighter text-red-800",
                       !areValuesVisible && "blur-md",
                     )}
                   >
@@ -115,16 +113,14 @@ export function Transactions() {
                     <CategoryIcon type="income" />
 
                     <div>
-                      <strong className="block tracking-[-0.5px]">
-                        Almoço
-                      </strong>
+                      <strong className="block tracking-tighter">Almoço</strong>
                       <span className="text-sm text-gray-600">04/06/2023</span>
                     </div>
                   </div>
 
                   <span
                     className={cn(
-                      "font-medium tracking-[-0.5px] text-green-800",
+                      "font-medium tracking-tighter text-green-800",
                       !areValuesVisible && "blur-md",
                     )}
                   >

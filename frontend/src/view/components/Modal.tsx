@@ -42,7 +42,7 @@ export function Modal({
               <Cross2Icon className="h-6 w-6" />
             </button>
 
-            <span className="text-lg font-bold tracking-[-1px]">{title}</span>
+            <span className="text-lg font-bold tracking-tightest">{title}</span>
 
             <div className="flex h-12 w-12 items-center justify-center">
               {rightAction}

@@ -21,7 +21,7 @@ export function AccountCard({ color, name, balance, type }: AccountCardProps) {
       <div>
         <BankAccountTypeIcon type={type} />
 
-        <span className="mt-4 block font-medium tracking-[-0.5px] text-gray-800">
+        <span className="mt-4 block font-medium tracking-tighter text-gray-800">
           {name}
         </span>
       </div>
@@ -29,7 +29,7 @@ export function AccountCard({ color, name, balance, type }: AccountCardProps) {
       <div>
         <span
           className={cn(
-            "block font-medium tracking-[-0.5px] text-gray-800",
+            "block font-medium tracking-tighter text-gray-800",
             !areValuesVisible && "blur-sm",
           )}
         >
