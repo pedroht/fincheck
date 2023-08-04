@@ -5,6 +5,7 @@ import { Input } from "../../../../components/Input";
 import { InputCurrency } from "../../../../components/InputCurrency";
 import { Modal } from "../../../../components/Modal";
 import { Select } from "../../../../components/Select";
+import { TrashIcon } from "../../../../components/icons/TrashIcon";
 import { useEditAccountModalController } from "./useEditAccountModalController";
 
 export function EditAccountModal() {
@@ -23,6 +24,11 @@ export function EditAccountModal() {
       title="Editar Conta"
       open={isEditAccountModalOpen}
       onClose={closeEditAccountModal}
+      rightAction={
+        <button>
+          <TrashIcon className="h-6 w-6 text-red-900" />
+        </button>
+      }
     >
       <form onSubmit={handleSubmit}>
         <div>
