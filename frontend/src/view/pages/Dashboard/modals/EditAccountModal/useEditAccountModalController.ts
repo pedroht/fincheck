@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
 
+import { useState } from "react";
 import { useDashboard } from "../../../../../app/hooks/useDashboard";
 import { bankAccountsService } from "../../../../../app/services/bankAccountsService";
 import { currencyStringToNumber } from "../../../../../app/utils/currencyStringToNumber";
@@ -39,12 +40,18 @@ export function useEditAccountModalController() {
     },
   });
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const queryClient = useQueryClient();
-  const { isLoading, mutateAsync } = useMutation(bankAccountsService.update);
+  const { isLoading, mutateAsync: updateAccount } = useMutation(
+    bankAccountsService.update,
+  );
+  const { isLoading: isLoadingDelete, mutateAsync: removeAccount } =
+    useMutation(bankAccountsService.remove);
 
   const handleSubmit = hookFormSubmit(async (data) => {
     try {
-      await mutateAsync({
+      await updateAccount({
         ...data,
         initialBalance: currencyStringToNumber(String(data.initialBalance)),
         id: accountBeingEdited!.id,
@@ -59,13 +66,39 @@ export function useEditAccountModalController() {
     }
   });
 
+  function handleOpenDeleteModal() {
+    setIsDeleteModalOpen(true);
+  }
+
+  function handleCloseDeleteModal() {
+    setIsDeleteModalOpen(false);
+  }
+
+  async function handleDeleteAccount() {
+    try {
+      await removeAccount(accountBeingEdited!.id);
+
+      queryClient.invalidateQueries({ queryKey: ["bankAccounts"] });
+
+      toast.success("Conta removida com sucesso!");
+      closeEditAccountModal();
+    } catch {
+      toast.error("Erro ao remover a conta!");
+    }
+  }
+
   return {
     isEditAccountModalOpen,
     errors,
     control,
     isLoading,
+    isDeleteModalOpen,
+    isLoadingDelete,
     closeEditAccountModal,
     register,
     handleSubmit,
+    handleOpenDeleteModal,
+    handleCloseDeleteModal,
+    handleDeleteAccount,
   };
 }
