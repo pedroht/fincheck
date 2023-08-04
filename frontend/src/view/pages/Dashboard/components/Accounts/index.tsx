@@ -17,6 +17,7 @@ export function Accounts() {
     areValuesVisible,
     isLoading,
     accounts,
+    currentBalance,
     setSliderState,
     toggleValueVisibility,
     openNewAccountModal,
@@ -43,7 +44,7 @@ export function Accounts() {
                   !areValuesVisible && "blur-md",
                 )}
               >
-                {formatCurrency(1000)}
+                {formatCurrency(currentBalance)}
               </strong>
 
               <button
@@ -105,34 +106,16 @@ export function Accounts() {
                     />
                   </div>
 
-                  <div>
-                    <SwiperSlide>
+                  {accounts.map((account) => (
+                    <SwiperSlide key={account.id}>
                       <AccountCard
-                        name="Nubank"
-                        color="#ffcc00"
-                        balance={1000.23}
-                        type="CHECKING"
+                        name={account.name}
+                        color={account.color}
+                        balance={account.currentBalance}
+                        type={account.type}
                       />
                     </SwiperSlide>
-
-                    <SwiperSlide>
-                      <AccountCard
-                        name="XP"
-                        color="#ffcc00"
-                        balance={1000.23}
-                        type="INVESTMENT"
-                      />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                      <AccountCard
-                        name="Carteira"
-                        color="#ffcc00"
-                        balance={1000.23}
-                        type="CASH"
-                      />
-                    </SwiperSlide>
-                  </div>
+                  ))}
                 </Swiper>
               </div>
             )}
