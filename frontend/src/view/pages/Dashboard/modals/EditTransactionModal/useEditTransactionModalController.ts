@@ -64,6 +64,7 @@ export function useEditTransactionModalController(
       });
 
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
+      queryClient.invalidateQueries({ queryKey: ["bankAccounts"] });
 
       toast.success(
         transaction?.type === "EXPENSE"
@@ -92,6 +93,7 @@ export function useEditTransactionModalController(
       await removeTransaction(transaction!.id);
 
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
+      queryClient.invalidateQueries({ queryKey: ["bankAccounts"] });
 
       toast.success(
         transaction!.type === "EXPENSE"
